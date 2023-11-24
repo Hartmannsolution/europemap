@@ -18,10 +18,10 @@ RUN npm run build
 
 # Install 'pm2' and 'serve' globally (if not already installed)
 RUN npm install -g serve
-RUN npm install -g pm2
+# RUN npm install -g pm2
 
 # Expose the port that your app is running on
-EXPOSE 5000
+EXPOSE 3000
 
-# Command to run your app using 'pm2' and 'serve' on port 5000 (for production as --spa (single page application))
-CMD ["pm2", "serve", "dist", "5000", "--spa"]
+# CMD ["pm2-runtime", "serve", "dist", "3000", "--spa"]
+CMD ["serve", "dist", "-l", "3000"]
