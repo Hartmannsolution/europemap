@@ -31,17 +31,9 @@ This is a guide to deploy a react vite app to Digital Ocean using Docker and Git
 16. Login to the Digital Ocean droplet and pull the image from Docker Hub
   - `docker pull your-docker-username/your-app-name:latest` and
   - `docker run -p 3000:3000 your-docker-username/your-app-name:latest`
-16. Check the Digital Ocean droplet
-16. Check the app in the browser
+17. Check the app in the browser
 
-### pm2 debugging
-- `pm2 list` - list all running processes
-- `pm2 logs` - show logs for all processes
-- `pm2 logs 0` - show logs for process with id 0
-- `pm2 stop 0` - stop process with id 0
-- `pm2 restart 0` - restart process with id 0
-- `pm2 delete all` - delete all processes
-- `pm2 delete 0` - delete process with id 0
+### debugging
 - On droplet: `docker ps -a` - list all containers on the system
 - On droplet: `docker logs <container_id>` - show logs for container with id `<container_id>`
 - Building the image: `docker build -t <image name> .` from the root of the project where the Dockerfile is located
@@ -73,13 +65,14 @@ RUN npm run build
 
 # Install 'pm2' and 'serve' globally (if not already installed)
 RUN npm install -g serve
-RUN npm install -g pm2
+# RUN npm install -g pm2
 
 # Expose the port that your app is running on
 EXPOSE 3000
 
-# Command to run your app using 'pm2' and 'serve' on port 5000 (for production as --spa (single page application))
-CMD ["pm2", "serve", "dist", "3000", "--spa"]
+# CMD ["pm2-runtime", "serve", "dist", "3000", "--spa"]
+CMD ["serve", "dist", "-l", "3000"]
+
 ```
 
 ## Github workflow file
