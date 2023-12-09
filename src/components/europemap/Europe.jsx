@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function SvgComponent(props) {
-    const [countryCode, setCountryCode] = useState("");
     const [countryData, setCountryData] = useState({name:"",});
     const [lastClicked, setLastClicked] = useState(null);
     const BASE_URL = 'https://restcountries.com/v3.1/alpha/';
